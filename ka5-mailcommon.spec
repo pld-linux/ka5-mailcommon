@@ -1,14 +1,15 @@
-%define		kdeappsver	18.12.1
+%define		kdeappsver	19.04.1
+%define		kframever	5.56.0
 %define		qtver		5.9.0
 %define		kaname		mailcommon
 Summary:	mailcommon
 Name:		ka5-%{kaname}
-Version:	18.12.1
+Version:	19.04.1
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Applications
 Source0:	http://download.kde.org/stable/applications/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	78d3e38902ef6a65808d91ad76368ae2
+# Source0-md5:	397523460229c5ce6ff8f45ae2b7a9ce
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel
 BuildRequires:	Qt5Core-devel >= %{qtver}
@@ -29,24 +30,26 @@ BuildRequires:	ka5-libkdepim-devel >= %{kdeappsver}
 BuildRequires:	ka5-mailimporter-devel >= %{kdeappsver}
 BuildRequires:	ka5-messagelib-devel >= %{kdeappsver}
 BuildRequires:	ka5-pimcommon-devel >= %{kdeappsver}
-BuildRequires:	kf5-extra-cmake-modules >= 5.44.0
-BuildRequires:	kf5-karchive-devel >= 5.51.0
-BuildRequires:	kf5-kcodecs-devel >= 5.51.0
-BuildRequires:	kf5-kcompletion-devel >= 5.51.0
-BuildRequires:	kf5-kconfig-devel >= 5.51.0
-BuildRequires:	kf5-kconfigwidgets-devel >= 5.51.0
-BuildRequires:	kf5-kdbusaddons-devel >= 5.51.0
-BuildRequires:	kf5-ki18n-devel >= 5.51.0
-BuildRequires:	kf5-kiconthemes-devel >= 5.51.0
-BuildRequires:	kf5-kio-devel >= 5.51.0
-BuildRequires:	kf5-kitemmodels-devel >= 5.51.0
-BuildRequires:	kf5-kitemviews-devel >= 5.51.0
-BuildRequires:	kf5-ktextwidgets-devel >= 5.51.0
-BuildRequires:	kf5-kwidgetsaddons-devel >= 5.51.0
-BuildRequires:	kf5-kwindowsystem-devel >= 5.51.0
-BuildRequires:	kf5-kxmlgui-devel >= 5.51.0
-BuildRequires:	kf5-syntax-highlighting-devel >= 5.51.0
+BuildRequires:	kf5-extra-cmake-modules >= %{kframever}
+BuildRequires:	kf5-karchive-devel >= %{kframever}
+BuildRequires:	kf5-kcodecs-devel >= %{kframever}
+BuildRequires:	kf5-kcompletion-devel >= %{kframever}
+BuildRequires:	kf5-kconfig-devel >= %{kframever}
+BuildRequires:	kf5-kconfigwidgets-devel >= %{kframever}
+BuildRequires:	kf5-kdbusaddons-devel >= %{kframever}
+BuildRequires:	kf5-kdesignerplugin-devel >= %{kframever}
+BuildRequires:	kf5-ki18n-devel >= %{kframever}
+BuildRequires:	kf5-kiconthemes-devel >= %{kframever}
+BuildRequires:	kf5-kio-devel >= %{kframever}
+BuildRequires:	kf5-kitemmodels-devel >= %{kframever}
+BuildRequires:	kf5-kitemviews-devel >= %{kframever}
+BuildRequires:	kf5-ktextwidgets-devel >= %{kframever}
+BuildRequires:	kf5-kwidgetsaddons-devel >= %{kframever}
+BuildRequires:	kf5-kwindowsystem-devel >= %{kframever}
+BuildRequires:	kf5-kxmlgui-devel >= %{kframever}
+BuildRequires:	kf5-syntax-highlighting-devel >= %{kframever}
 BuildRequires:	libxslt-progs
+BuildRequires:	ninja
 BuildRequires:	phonon-qt5-devel
 BuildRequires:	qt5-build >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.164
@@ -76,15 +79,15 @@ Pliki nagłówkowe dla programistów używających %{kaname}.
 %build
 install -d build
 cd build
-%cmake \
+%cmake -G Ninja \
+	-DHTML_INSTALL_DIR=%{_kdedocdir} \
 	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
 	..
-%{__make}
+%ninja_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} -C build install \
-	DESTDIR=$RPM_BUILD_ROOT
+%ninja_install -C build
 
 %find_lang %{kaname} --all-name --with-kde
 
