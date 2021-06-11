@@ -1,15 +1,15 @@
-%define		kdeappsver	21.04.1
+%define		kdeappsver	21.04.2
 %define		kframever	5.56.0
 %define		qtver		5.9.0
 %define		kaname		mailcommon
 Summary:	mailcommon
 Name:		ka5-%{kaname}
-Version:	21.04.1
+Version:	21.04.2
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Applications
 Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	0336a2c8cd6c3949e4bcde335a4e5fc6
+# Source0-md5:	82df7b48c2bf03a826d9b4320f003622
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel
 BuildRequires:	Qt5Core-devel >= %{qtver}
