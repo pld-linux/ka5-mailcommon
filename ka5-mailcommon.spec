@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	22.12.3
+%define		kdeappsver	23.04.0
 %define		kframever	5.94.0
 %define		qtver		5.15.2
 %define		kaname		mailcommon
 Summary:	mailcommon
 Name:		ka5-%{kaname}
-Version:	22.12.3
-Release:	3
+Version:	23.04.0
+Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Applications
 Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	9d17ef7934faa0cab685896db915a979
+# Source0-md5:	a3619f1a4fea01f545ea49dddf295c12
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel
 BuildRequires:	Qt5Core-devel >= %{qtver}
@@ -112,15 +112,16 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{kaname}.lang
 %defattr(644,root,root,755)
-%ghost %{_libdir}/libKF5MailCommon.so.5
-%attr(755,root,root) %{_libdir}/libKF5MailCommon.so.5.*.*
-%attr(755,root,root) %{_libdir}/qt5/plugins/designer/mailcommonwidgets.so
 %{_datadir}/qlogging-categories5/mailcommon.categories
 %{_datadir}/qlogging-categories5/mailcommon.renamecategories
+%ghost %{_libdir}/libKPim5MailCommon.so.5
+%attr(755,root,root) %{_libdir}/libKPim5MailCommon.so.*.*.*
+%attr(755,root,root) %{_libdir}/qt5/plugins/designer/mailcommon5widgets.so
 
 %files devel
 %defattr(644,root,root,755)
-%{_includedir}/KF5/MailCommon
-%{_libdir}/cmake/KF5MailCommon
-%{_libdir}/libKF5MailCommon.so
 %{_libdir}/qt5/mkspecs/modules/qt_MailCommon.pri
+%{_includedir}/KPim5/MailCommon
+%{_libdir}/cmake/KF5MailCommon
+%{_libdir}/cmake/KPim5MailCommon
+%{_libdir}/libKPim5MailCommon.so
