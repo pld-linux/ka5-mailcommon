@@ -1,28 +1,28 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	23.08.4
+%define		kdeappsver	24.01.95
 %define		kframever	5.94.0
 %define		qtver		5.15.2
 %define		kaname		mailcommon
 Summary:	mailcommon
 Name:		ka5-%{kaname}
-Version:	23.08.4
-Release:	1
+Version:	24.01.95
+Release:	0.1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Applications
-Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	d38be822e21e4e2606ca35717727dfd4
+Source0:	https://download.kde.org/unstable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
+# Source0-md5:	726c81522f61c7632475bae22a419036
 URL:		http://www.kde.org/
-BuildRequires:	Qt5Core-devel
-BuildRequires:	Qt5Core-devel >= %{qtver}
-BuildRequires:	Qt5DBus-devel
-BuildRequires:	Qt5Designer-devel
-BuildRequires:	Qt5Gui-devel
-BuildRequires:	Qt5Test-devel
-BuildRequires:	Qt5UiTools-devel >= 5.11.1
-BuildRequires:	Qt5Widgets-devel
-BuildRequires:	Qt5Xml-devel
+BuildRequires:	Qt6Core-devel
+BuildRequires:	Qt6Core-devel >= %{qtver}
+BuildRequires:	Qt6DBus-devel
+BuildRequires:	Qt6Designer-devel
+BuildRequires:	Qt6Gui-devel
+BuildRequires:	Qt6Test-devel
+BuildRequires:	Qt6UiTools-devel >= 5.11.1
+BuildRequires:	Qt6Widgets-devel
+BuildRequires:	Qt6Xml-devel
 BuildRequires:	cmake >= 3.20
 BuildRequires:	gettext-devel
 BuildRequires:	ka5-akonadi-devel >= %{kdeappsver}
@@ -33,28 +33,27 @@ BuildRequires:	ka5-libkdepim-devel >= %{kdeappsver}
 BuildRequires:	ka5-mailimporter-devel >= %{kdeappsver}
 BuildRequires:	ka5-messagelib-devel >= %{kdeappsver}
 BuildRequires:	ka5-pimcommon-devel >= %{kdeappsver}
-BuildRequires:	kf5-extra-cmake-modules >= %{kframever}
-BuildRequires:	kf5-karchive-devel >= %{kframever}
-BuildRequires:	kf5-kcodecs-devel >= %{kframever}
-BuildRequires:	kf5-kcompletion-devel >= %{kframever}
-BuildRequires:	kf5-kconfig-devel >= %{kframever}
-BuildRequires:	kf5-kconfigwidgets-devel >= %{kframever}
-BuildRequires:	kf5-kdbusaddons-devel >= %{kframever}
-BuildRequires:	kf5-kdesignerplugin-devel >= %{kframever}
-BuildRequires:	kf5-ki18n-devel >= %{kframever}
-BuildRequires:	kf5-kiconthemes-devel >= %{kframever}
-BuildRequires:	kf5-kio-devel >= %{kframever}
-BuildRequires:	kf5-kitemmodels-devel >= %{kframever}
-BuildRequires:	kf5-kitemviews-devel >= %{kframever}
-BuildRequires:	kf5-ktextwidgets-devel >= %{kframever}
-BuildRequires:	kf5-kwidgetsaddons-devel >= %{kframever}
-BuildRequires:	kf5-kwindowsystem-devel >= %{kframever}
-BuildRequires:	kf5-kxmlgui-devel >= %{kframever}
-BuildRequires:	kf5-syntax-highlighting-devel >= %{kframever}
+BuildRequires:	kf6-extra-cmake-modules >= %{kframever}
+BuildRequires:	kf6-karchive-devel >= %{kframever}
+BuildRequires:	kf6-kcodecs-devel >= %{kframever}
+BuildRequires:	kf6-kcompletion-devel >= %{kframever}
+BuildRequires:	kf6-kconfig-devel >= %{kframever}
+BuildRequires:	kf6-kconfigwidgets-devel >= %{kframever}
+BuildRequires:	kf6-kdbusaddons-devel >= %{kframever}
+BuildRequires:	kf6-ki18n-devel >= %{kframever}
+BuildRequires:	kf6-kiconthemes-devel >= %{kframever}
+BuildRequires:	kf6-kio-devel >= %{kframever}
+BuildRequires:	kf6-kitemmodels-devel >= %{kframever}
+BuildRequires:	kf6-kitemviews-devel >= %{kframever}
+BuildRequires:	kf6-ktextwidgets-devel >= %{kframever}
+BuildRequires:	kf6-kwidgetsaddons-devel >= %{kframever}
+BuildRequires:	kf6-kwindowsystem-devel >= %{kframever}
+BuildRequires:	kf6-kxmlgui-devel >= %{kframever}
+BuildRequires:	kf6-syntax-highlighting-devel >= %{kframever}
 BuildRequires:	libxslt-progs
 BuildRequires:	ninja
-BuildRequires:	phonon-qt5-devel
-BuildRequires:	qt5-build >= %{qtver}
+BuildRequires:	phonon-qt6-devel
+BuildRequires:	qt6-build >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	shared-mime-info
 BuildRequires:	tar >= 1:1.22
@@ -110,16 +109,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{kaname}.lang
 %defattr(644,root,root,755)
-%{_datadir}/qlogging-categories5/mailcommon.categories
-%{_datadir}/qlogging-categories5/mailcommon.renamecategories
-%ghost %{_libdir}/libKPim5MailCommon.so.5
-%attr(755,root,root) %{_libdir}/libKPim5MailCommon.so.*.*.*
-%attr(755,root,root) %{_libdir}/qt5/plugins/designer/mailcommon5widgets.so
+%attr(755,root,root) %{_libdir}/libKPim6MailCommon.so.*.*
+%ghost %{_libdir}/libKPim6MailCommon.so.6
+%attr(755,root,root) %{_libdir}/qt6/plugins/designer/mailcommon6widgets.so
+%{_datadir}/qlogging-categories6/mailcommon.categories
+%{_datadir}/qlogging-categories6/mailcommon.renamecategories
 
 %files devel
 %defattr(644,root,root,755)
-%{_libdir}/qt5/mkspecs/modules/qt_MailCommon.pri
-%{_includedir}/KPim5/MailCommon
-%{_libdir}/cmake/KF5MailCommon
-%{_libdir}/cmake/KPim5MailCommon
-%{_libdir}/libKPim5MailCommon.so
+%{_includedir}/KPim6/MailCommon
+%{_libdir}/cmake/KPim6MailCommon
+%{_libdir}/libKPim6MailCommon.so
